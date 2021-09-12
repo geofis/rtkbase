@@ -74,16 +74,16 @@ $(document).ready(function () {
 
     var map = L.map('map').setView({lon: 0, lat: 0}, 2);
 
-    var osmLayer = L.tileLayer('https://osm.vtech.fr/hot/{z}/{x}/{y}.png?uuid=2fc148f4-7018-4fd0-ac34-6b626cdc97a1', {
-        maxZoom: 20,
-        attribution: '&copy; <a href="https://openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors</a> ' +
-            '| <a href="https://cloud.empreintedigitale.fr" target="_blank">Empreinte digitale</a>',
+    var osmLayer = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxNativeZoom: 19, // OSM max available zoom is at 19.
+        maxZoom: 22, // Match the map maxZoom, or leave map.options.maxZoom undefined.
+        attribution: '&copy; <a href="https://openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors</a>',
         tileSize: 256,      
     });
-
-    var orthoHrLayer = L.tileLayer('https://wms.openstreetmap.fr/tms/1.0.0/tous_fr/{z}/{x}/{y} ', {
-        maxZoom: 20,
-        attribution: 'Ortho HR | &copy; <a href="https://geoservices.ign.fr/documentation/diffusion/documentation-offre.html#bdortho_orthohr target="_blank">IGN</a> ',
+    var orthoHrLayer = L.tileLayer('http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z} ', {
+        maxNativeZoom: 21, // OSM max available zoom is at 19.
+        maxZoom: 22, // Match the map maxZoom, or leave map.options.maxZoom undefined.
+        attribution: '&copy; Google',
         tileSize: 256,       
     });
 
@@ -100,7 +100,7 @@ $(document).ready(function () {
     
     var baseMaps = {
         "OpenStreetMap": osmLayer, 
-        "Ortho HR (fr)": orthoHrLayer
+        "Google Satellite": orthoHrLayer
     };
 
     if (typeof(aerialLayer) !== 'undefined') {
