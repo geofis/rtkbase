@@ -26,7 +26,7 @@ man_help(){
     echo ''
     echo '        --rtklib'
     echo '                         Get RTKlib 2.4.3 from github and compile it.'
-    echo '                         https://github.com/tomojitakasu/RTKLIB/tree/rtklib_2.4.3'
+    echo '                         https://github.com/rtklibexplorer/RTKLIB/tree/b34c'
     echo ''
     echo '        --rtkbase-release'
     echo '                         Get last release of RTKBASE:'
@@ -133,7 +133,7 @@ install_rtklib() {
       if [ ! -f /usr/local/bin/str2str ]
       then 
         #Get Rtklib 2.4.3 b34 release
-        sudo -u "$(logname)" wget -qO - https://github.com/tomojitakasu/RTKLIB/archive/v2.4.3-b34.tar.gz | tar -xvz
+        sudo -u "$(logname)" wget -qO - https://github.com/rtklibexplorer/RTKLIB/archive/b34c.tar.gz | tar -xvz
         #Install Rtklib app
         #TODO add correct CTARGET in makefile?
         make --directory=RTKLIB-2.4.3-b34/app/consapp/str2str/gcc
