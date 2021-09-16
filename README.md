@@ -141,7 +141,7 @@ So, if you really want it, let's go for a manual installation with some explanat
 
 1. Get latest rtkbase release `sudo ./install.sh --rtkbase-release`, or:
    ```bash
-   $ wget https://github.com/stefal/rtkbase/releases/latest/download/rtkbase.tar.gz -O rtkbase.tar.gz
+   $ wget https://github.com/geofis/rtkbase/releases/latest/download/rtkbase.tar.gz -O rtkbase.tar.gz
    $ tar -xvf rtkbase.tar.gz
 
    ```
