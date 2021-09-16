@@ -30,11 +30,11 @@ man_help(){
     echo ''
     echo '        --rtkbase-release'
     echo '                         Get last release of RTKBASE:'
-    echo '                         https://github.com/Stefal/rtkbase/releases'
+    echo '                         https://github.com/geofis/rtkbase/releases'
     echo ''
     echo '        --rtkbase-repo'
     echo '                         Clone RTKBASE from github:'
-    echo '                         https://github.com/Stefal/rtkbase/tree/web_gui'
+    echo '                         https://github.com/geofis/rtkbase/tree/web_gui'
     echo ''
     echo '        --unit-files'
     echo '                         Deploy services.'
@@ -152,9 +152,9 @@ install_rtklib() {
 rtkbase_repo(){
     #Get rtkbase repository
     if [[ -n "${1}" ]]; then
-      sudo -u "$(logname)" git clone --branch "${1}" --single-branch https://github.com/stefal/rtkbase.git
+      sudo -u "$(logname)" git clone --branch "${1}" --single-branch https://github.com/geofis/rtkbase.git
     else
-      sudo -u "$(logname)" git clone https://github.com/stefal/rtkbase.git
+      sudo -u "$(logname)" git clone https://github.com/geofis/rtkbase.git
     fi
     sudo -u "$(logname)" touch rtkbase/settings.conf
     add_rtkbase_path_to_environment
@@ -163,7 +163,7 @@ rtkbase_repo(){
 
 rtkbase_release(){
     #Get rtkbase latest release
-    sudo -u "$(logname)" wget https://github.com/stefal/rtkbase/releases/latest/download/rtkbase.tar.gz -O rtkbase.tar.gz
+    sudo -u "$(logname)" wget https://github.com/geofis/rtkbase/releases/latest/download/rtkbase.tar.gz -O rtkbase.tar.gz
     sudo -u "$(logname)" tar -xvf rtkbase.tar.gz
     sudo -u "$(logname)" touch rtkbase/settings.conf
     add_rtkbase_path_to_environment
