@@ -72,11 +72,11 @@ from werkzeug.security import check_password_hash
 from werkzeug.urls import url_parse
 
 app = Flask(__name__)
-app.debug = False
+app.debug = True
 app.config["SECRET_KEY"] = "secret!"
 #app.config["UPLOAD_FOLDER"] = os.path.join(os.path.dirname(__file__), "../logs")
 app.config["DOWNLOAD_FOLDER"] = os.path.join(os.path.dirname(__file__), "../data")
-app.config["LOGIN_DISABLED"] = False
+app.config["LOGIN_DISABLED"] = True
 path_to_rtklib = "/usr/local/bin"
 
 login=LoginManager(app)
@@ -361,13 +361,15 @@ def settings_page():
     file_settings = rtkbaseconfig.get_file_settings()
     rtcm_svr_settings = rtkbaseconfig.get_rtcm_svr_settings()
     rtcm_serial_settings = rtkbaseconfig.get_rtcm_serial_settings()
+    corrections_receiver_settings = rtkbaseconfig.get_corrections_receiver_settings()
 
     return render_template("settings.html", main_settings = main_settings,
                                             ntrip_settings = ntrip_settings,
                                             local_ntripc_settings = local_ntripc_settings,
                                             file_settings = file_settings,
                                             rtcm_svr_settings = rtcm_svr_settings,
-                                            rtcm_serial_settings = rtcm_serial_settings,)
+                                            rtcm_serial_settings = rtcm_serial_settings,
+                                            corrections_receiver_settings = corrections_receiver_settings,)
 
 @app.route('/logs')
 @login_required

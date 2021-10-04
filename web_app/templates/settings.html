@@ -260,7 +260,7 @@
       </div>
     </form>
 
-    <!-- ######## RTCM Serial Service ########-->
+  <!-- ######## RTCM Serial Service ########-->
   <div id="rtcm_serial_service_space" class="form-group row">
     <div class="col">
     <label for="rtcm_serial-switch" class="col-4 col-form-label col-form-label-lg">Rtcm serial service</label>
@@ -363,6 +363,76 @@
           <button type="submit" class="btn btn-primary float-right" disabled>Save</button>
         </div>
     </form>
+
+  <!-- ######## Corrections to receiver Service ######## -->
+  <div id="corrections_receiver_service_space" class="form-group row">
+    <div class="col">
+    <label for="corrections_receiver-switch" class="col-4 col-form-label col-form-label-lg">Corrections to receiver service</label>
+    <input id="corrections_receiver-switch" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="outline-secondary">
+    <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#{{ corrections_receiver_settings[0].source_section }}" aria-expanded="false" aria-controls="corrections_receiver_service_options">Options</button>
+    <a href="#" data-toggle="tooltip" title="This service, when enabled, can send a RTCM corrections to the receiver.">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6c757d" class="bi bi-info-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+      </svg>
+    </a>
+    </div>
+  </div>
+    <form id="{{ corrections_receiver_settings.pop(0).source_section }}" class="collapse was-validated">
+      <div class="form-group row">
+        <label for="ext_ntrip_addr" class="col-sm-3 col-form-label">External Ntrip caster address: </label>
+        <div class="col-sm-9">
+            <input id="ext_ntrip_addr" type="text" name="ext_ntrip_addr" class="form-control" value="{{ corrections_receiver_settings[0].ext_ntrip_addr }}" title="External Ntrip caster address" pattern="\w+[^|><\s]*" required>
+            <div class="invalid-feedback">External Ntrip caster address</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="ext_ntrip_user" class="col-sm-3 col-form-label">External Ntrip caster username: </label>
+        <div class="col-sm-9">
+            <input id="ext_ntrip_user" type="text" name="ext_ntrip_user" class="form-control" value="{{ corrections_receiver_settings[1].ext_ntrip_user }}" title="External Ntrip caster username" pattern="\w+[^|><\s]*" required>
+            <div class="invalid-feedback">External Ntrip caster username</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="ext_ntrip_pwd" class="col-sm-3 col-form-label">External Ntrip caster password: </label>
+        <div class="col-sm-9">
+            <input id="ext_ntrip_pwd" type="text" name="ext_ntrip_pwd" class="form-control" value="{{ corrections_receiver_settings[2].ext_ntrip_pwd }}" title="External Ntrip caster password" pattern="\w+[^|><\s]*">
+            <div class="invalid-feedback">External Ntrip caster password</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="ext_ntrip_port" class="col-sm-3 col-form-label">External caster port: </label>
+        <div class="col-sm-9">
+            <input id="ext_ntrip_port" type="text" name="ext_ntrip_port" class="form-control" value="{{ corrections_receiver_settings[3].ext_ntrip_port }}" title="External Ntrip caster port number" pattern="[0-9]{4,5}" required>
+            <div class="invalid-feedback">External Ntrip Caster port number, e.g. 2101</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="ext_ntrip_mnt_name" class="col-sm-3 col-form-label">External caster mount name: </label>
+        <div class="col-sm-9">
+            <input id="ext_ntrip_mnt_name" type="text" name="ext_ntrip_mnt_name" class="form-control" value="{{ corrections_receiver_settings[4].ext_ntrip_mnt_name }}" title="External Ntrip caster Mount name" pattern="\w+[^|><\/\s]*" required>
+            <div class="invalid-feedback">External Ntrip caster mount name</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="rcv_com_port" class="col-sm-3 col-form-label">Receiver port: </label>
+        <div class="col-sm-9">
+            <input id="rcv_com_port" type="text" name="rcv_com_port" class="form-control" value="{{ corrections_receiver_settings[5].rcv_com_port }}" title="receiver com port" pattern="\w+[^|><\/\s]*" required>
+            <div class="invalid-feedback">Receiver port (without /dev/)</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="rcv_com_port_settings" class="col-sm-3 col-form-label">Receiver port settings: </label>
+        <div class="col-sm-9">
+            <input id="rcv_com_port_settings" type="text" name="rcv_com_port_settings" class="form-control" value="{{ corrections_receiver_settings[6].rcv_com_port_settings }}" title="Receiver port settings: baudrate:data bits:parity:stop bits:flow control" pattern="\w[^|><\/]*" required>
+            <div class="invalid-feedback">Receiver port settings</div>
+        </div>
+      </div> 
+       <div class="clearfix">
+         <button type="submit" class="btn btn-primary float-right" disabled>Save</button>
+       </div>
+    </form>
+
 </div>
 <div id="system_settings" class="container">
     <h4> System Settings:</h4>

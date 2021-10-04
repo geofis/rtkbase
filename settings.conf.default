@@ -122,3 +122,23 @@ rtcm_serial_receiver_options=''
 logdir=$BASEDIR/logs
 #log trace level (0: no trace)
 level=0
+
+[corrections_receiver]
+
+#NTRIP source of corrections for receiver 
+
+#external Ntrip caster address
+ext_ntrip_addr=''
+#external Ntrip caster username
+ext_ntrip_user=''
+#external Ntrip caster password
+ext_ntrip_pwd=''
+#external caster port
+ext_ntrip_port='2102'
+#external caster mount name
+ext_ntrip_mnt_name=''
+#receiver port
+rcv_com_port='ttyS0'
+#receiver port settings
+rcv_com_port_settings='115200:8:n:1'
+
