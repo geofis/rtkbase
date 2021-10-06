@@ -13,6 +13,9 @@ in_tcp="tcpcli://127.0.0.1:${tcp_port}#${receiver_format}"
 #in_ext_tcp is mainly for dev purpose to receive a raw stream from another base
 in_ext_tcp="tcpcli://${ext_tcp_source}:${ext_tcp_port}#${receiver_format}"
 
+#in_ext_ntrip is intended for rover use
+in_ext_ntrip="ntrip://${ext_ntrip_user}:${ext_ntrip_pwd}@${ext_ntrip_addr}:${ext_ntrip_port}/${ext_ntrip_mnt_name}"
+
 out_caster="ntrips://:${svr_pwd}@${svr_addr}:${svr_port}/${mnt_name}#rtcm3 -msg ${rtcm_msg} -p ${position}"
 #add receiver options if it exists
 [[ ! -z "${ntrip_receiver_options}" ]] && out_caster=""${out_caster}" -opt "${ntrip_receiver_options}""
@@ -32,6 +35,8 @@ out_rtcm_svr="tcpsvr://:${rtcm_svr_port}#rtcm3 -msg ${rtcm_svr_msg} -p ${positio
 out_rtcm_serial="serial://${out_com_port}:${out_com_port_settings}#rtcm3 -msg ${rtcm_serial_msg} -p ${position}"
 #add receiver options if it exists
 [[ ! -z "${rtcm_serial_receiver_options}" ]] && out_rtcm_serial=""${out_rtcm_serial}" -opt "${rtcm_serial_receiver_options}""
+
+out_rcv="serial://${rcv_com_port}:${rcv_com_port_settings}"
 
 receiver_info="RTKBase ${receiver},${version}"
 
@@ -74,5 +79,10 @@ mkdir -p ${logdir}
       ${cast} -in ${!1} -out ${out_file} -t ${level} -fl ${logdir}/str2str_file.log &
     fi
     ;;
+  out_rcv)
+    #echo ${cast} -in ${!1} -out $out_rcv
+    ${cast} -in ${!1} -out ${out_rcv} -i "${receiver_info}" -a "${antenna_info}" -t ${level} -fl ${logdir}/str2str_out_rcv.log &
+    ;;
+
     
   esac

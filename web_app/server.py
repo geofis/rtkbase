@@ -98,6 +98,7 @@ services_list = [{"service_unit" : "str2str_tcp.service", "name" : "main"},
                  {"service_unit" : "str2str_rtcm_svr.service", "name" : "rtcm_svr"},
                  {'service_unit' : 'str2str_rtcm_serial.service', "name" : "rtcm_serial"},
                  {"service_unit" : "str2str_file.service", "name" : "file"},
+                 {'service_unit' : 'str2str_cor_rcv.service', "name" : "cor_rcv"},
                  {'service_unit' : 'rtkbase_archive.timer', "name" : "archive_timer"}, 
                  {'service_unit' : 'rtkbase_archive.service', "name" : "archive_service"},
                  ]
@@ -739,6 +740,8 @@ def update_settings(json_msg):
             restartServices(("rtcm_serial",))
         elif source_section == "local_storage":
             restartServices(("file",))
+        elif source_section == "corrections_receiver":
+            restartServices(("cor_rcv",))
 
 if __name__ == "__main__":
     try:

@@ -244,6 +244,37 @@ $(document).ready(function () {
             //console.log("File SwitchStatus : " + switchStatus);
             socket.emit("services switch", {"name" : "file", "active" : switchStatus});          
         })
+
+
+        // ####################  CORRECCTIONS TO RECEIVER service Switch #########################
+
+        var corRcvSwitch = $('#corrections_receiver-switch');
+        // set the switch to on/off depending of the service status
+        if (servicesStatus[6].active === true) {
+            //document.querySelector("#main-switch").bootstrapToggle('on');
+            corRcvSwitch.bootstrapToggle('on', true);
+        } else {
+            //document.querySelector("#main-switch").bootstrapToggle('off');
+            corRcvSwitch.bootstrapToggle('off', true);
+        }
+        //console.log(servicesStatus[6]);
+        if (servicesStatus[6].btn_color) {
+            corRcvSwitch.bootstrapToggle('setOnStyle', servicesStatus[6].btn_color);
+        }
+        if (servicesStatus[6].btn_off_color) {
+            corRcvSwitch.bootstrapToggle('setOffStyle', servicesStatus[6].btn_off_color);
+        }
+
+        // event for switching on/off service on user mouse click
+        //TODO When the switch changes its position, this event seems attached before
+        //the switch finish its transition, then fire another event.
+        $( "#corrections_receiver-switch" ).one("change", function(e) {
+            var switchStatus = $(this).prop('checked');
+            //console.log(" e : " + e);
+            //console.log("Cor Rcv SwitchStatus : " + switchStatus);
+            socket.emit("services switch", {"name" : "cor_rcv", "active" : switchStatus});          
+        })
+
     })
 
     socket.on("system time corrected", function(msg) {
