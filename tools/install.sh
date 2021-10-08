@@ -349,6 +349,7 @@ configure_gnss(){
         if [[ ${detected_gnss[1]} =~ 'u-blox' ]]
         then
           "${rtkbase_path}"/tools/set_zed-f9p.sh /dev/${detected_gnss[0]} 115200 "${rtkbase_path}"/receiver_cfg/U-Blox_ZED-F9P_rtkbase.cfg
+#          "${rtkbase_path}"/tools/set_zed-f9p.sh /dev/${detected_gnss[0]} 115200 "${rtkbase_path}"/receiver_cfg/U-Blox_ZED-F9P_rtkbase_NMEA.cfg
         fi
       else
         echo 'RtkBase not installed, use option --rtkbase-release'
